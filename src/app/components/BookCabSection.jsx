@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import {useRouter} from 'next/navigation';
 
 const BookCabSection = () => {
   const [tripType, setTripType] = useState('');
@@ -13,6 +14,7 @@ const BookCabSection = () => {
   const [isRoundTrip, setIsRoundTrip] = useState(false);
   const [routes, setRoutes] = useState([]); // To hold the fetched routes
   const [loading, setLoading] = useState(true); // For loading state
+  const router = useRouter();
 
   const handleTripTypeChange = (e) => {
     const value = e.target.value;
@@ -46,8 +48,10 @@ const BookCabSection = () => {
       const result = await response.json();
 
       if (response.ok) {
-        alert(`Trip created successfully: ${result.trip._id}`);
+        
         localStorage.setItem("trip", result.trip._id);
+
+        router.push("/cars");
       } else {
         alert(`Error: ${result.message}`);
       }

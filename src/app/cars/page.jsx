@@ -1,7 +1,7 @@
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
-import Navbar from '@/components/Navbar'
-import SelectCar from '@/components/SelectCar'
+import Footer from '@/app/components/Footer'
+import Header from '@/app/components/Header'
+import Navbar from '@/app/components/Navbar'
+import SelectCar from '@/app/components/SelectCar'
 import React from 'react'
 
 function page() {

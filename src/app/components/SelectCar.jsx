@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import emailjs from "emailjs-com"
+import { useRouter } from 'next/navigation';
 
 const SelectCar = () => {
   const [tripId, setTripId] = useState(null);
@@ -8,6 +9,7 @@ const SelectCar = () => {
   const [selectCar, setSelectCar] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false); // For controlling modal visibility
   const [userDetails, setUserDetails] = useState({ name: "", email: "", mobileNumber: "" }); // User details state
+  const router = useRouter();
 
   useEffect(() => {
     const tripIdFromLocalStorage = localStorage.getItem("trip");
@@ -124,6 +126,8 @@ const SelectCar = () => {
 
       // Optionally, close the modal after sending the email
       setIsModalOpen(false);
+
+      router.push("/")
     } catch (error) {
       console.error('Error sending email:', error);
     }

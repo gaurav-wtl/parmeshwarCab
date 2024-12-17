@@ -1,13 +1,13 @@
-import About from "@/components/About";
-import BookCabSection from "@/components/BookCabSection";
-import CabOffers from "@/components/CabOffer";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import HeroSection from "@/components/HeroSection";
-import Milestone from "@/components/Milestone";
-import Navbar from "@/components/Navbar";
-import SelectCar from "@/components/SelectCar";
-import Services from "@/components/Services";
+import About from "@/app/components/About";
+import BookCabSection from "@/app/components/BookCabSection";
+import CabOffers from "@/app/components/CabOffer";
+import Footer from "@/app/components/Footer";
+import Header from "@/app/components/Header";
+import HeroSection from "@/app/components/HeroSection";
+import Milestone from "@/app/components/Milestone";
+import Navbar from "@/app/components/Navbar";
+import SelectCar from "@/app/components/SelectCar";
+import Services from "@/app/components/Services";
 import Image from "next/image";
 
 export default function Home() {
