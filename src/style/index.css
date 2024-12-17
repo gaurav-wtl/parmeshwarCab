@@ -1,0 +1,672 @@
+/* Reset margin and padding for full-screen layout */
+body, html {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Base styles for the page */
+/* body {
+    background: #fbfbfd;
+} */
+
+/* Full Screen Container */
+#carOptionsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);   
+    gap: 20px;                             /* Space between the cards */
+    padding: 20px;
+    height: 100%;                         /* Full screen height */
+    box-sizing: border-box;
+    
+}
+
+/* Individual Car Card */
+.car-option {
+    display: flex;
+    justify-content: space-between;           /* Flexbox alignment */
+    align-items: center;
+    flex-direction: row;                      /* Image on left, details on right */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
+    height: 100%;
+    width: 100%;  /* Ensure full width on smaller screens */
+    max-width: 800px; /* Limit max width to maintain structure */
+    margin: 20px;   /* Center the cards */
+    padding-right:10px;
+}
+
+/* Hover effect for each car card */
+.car-option:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+}
+
+/* Car Image Styling */
+.car-option img {
+    width: 150px;                          /* Image size */
+    height: 100px;                         /* Image height */
+    margin-left: 10px;                    /* Space between image and details */
+    padding-top: 10px;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+/* Car Details Section */
+.car-option .car-details {
+    display: flex;
+    flex-direction: column;       
+    align-items: flex-start; /* Align to the left for mobile */
+    justify-content: center;        /* Space out the sections */
+    width: 20px;             /* Take remaining space after image */
+   
+   
+}
+
+/* Car Name Styling */
+.car-option h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-left: 10px;
+}
+
+/* Luggage Capacity */
+.car-option p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    margin-left: 10px;
+    /* margin: 10px 10px; */
+}
+
+/* Features List */
+.car-option ul {
+    list-style: radial-gradient(rgb(248, 144, 7),rgb(222, 233, 26));
+    padding: 0;
+    margin-left: 10px;
+    
+}
+
+.car-option ul li {
+    font-size: 1.1rem;  /* Larger text size for features */
+    color: #555;        /* Slightly darker color for better readability */
+    padding: 5px 0;
+    border-bottom: 1px solid #f0f0f0; /* Optional line separating features */
+    
+}
+
+.car-option .car-details p {
+    font-size: 1.2rem;  /* Increase font size for additional details */
+    color: #555;        /* Ensure text color is readable */
+    margin: 5px;
+    
+}
+
+/* Price Section */
+.car-option .price {
+    font-size: 1.5rem;        /* Increase the font size of the price */
+    font-weight: bold;
+    color: #333;
+    margin: 15px 0;
+}
+
+.car-option .select-button {
+    background-color: #cc4d2d;
+    color: white;
+    padding: 15px 30px;      /* Increase padding to make the button larger */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;        /* Increase font size of the button text */
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+.car-option .select-button:hover {
+    background-color: #e26d0d;
+}
+
+/* Modal styling for the car options and personal data */
+#carOptionsModal, #personalDataModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+#carOptionsModal .modal-content, #personalDataModal .modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Close buttons for modals */
+#closeModal, #closePersonalDataModal {
+    background-color: #f44336;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#closeModal:hover, #closePersonalDataModal:hover {
+    background-color: #e41d1d;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+
+.navbar .logo a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+}
+
+.navbar .nav-links {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+}
+
+.navbar .nav-links li {
+    margin: 0 10px;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1em;
+    padding: 10px;
+}
+
+.navbar .nav-links a:hover {
+    background-color: #444;
+    border-radius: 5px;
+}
+
+/* Hamburger Menu Styles for Mobile */
+.menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.menu-icon i {
+    font-size: 1.5em;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+    .navbar .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .navbar .nav-links li {
+        margin: 10px 0;
+    }
+
+    .navbar .menu-icon {
+        display: block;
+    }
+
+    .navbar.active .nav-links {
+        display: flex;
+    }
+
+    .navbar.active .menu-icon i {
+        transform: rotate(90deg);
+    }
+
+    /* Full Screen Container for Mobile */
+    #carOptionsContainer {
+        grid-template-columns: 1fr;  /* Stacking cards in one column on mobile */
+        /* padding: 10px; */
+    }
+
+    .car-option {
+        width: 100%;  /* Make the car cards full-width */
+        height: fit-content;
+        margin: 10px;
+    }
+
+    .car-option img {
+        width: 100px;
+        height: 60px;
+    }
+
+    .car-option .car-details {
+        width: 100%;
+        align-items: flex-start;
+        margin: 10px 0;
+    }
+
+    .car-option h4 {
+        font-size: 1.5rem;
+    }
+
+    .car-option p {
+        font-size: 1rem;
+    }
+
+    .car-option .price {
+        font-size: 1.2rem;
+    }
+
+    .car-option .select-button {
+        width: 100%;
+        font-size: 18px;
+        height: 70px;
+        margin-right: 5px;
+    }
+
+    /* Modal Content Adjustments */
+    #carOptionsModal .modal-content, #personalDataModal .modal-content {
+        width: 100%;
+        max-width: 500px;
+        padding: 15px;
+    }
+
+    /* Button Styles */
+    .book-now-btn {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+
+    .call-button {
+        bottom: 10px;
+        right: 10px;
+        font-size: 14px;
+    }
+}
+
+/* Footer Styles */
+.new_footer_area {
+    background: blanchedalmond;
+}
+
+.new_footer_top {
+    padding: 120px 0px 270px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.new_footer_top .company_widget p {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 28px;
+    color: #6a7695;
+    margin-bottom: 20px;
+}
+
+.new_footer_top .footer_bg {
+    position: absolute;
+    bottom: 0;
+    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigB8iI5tb8WSVBuVUGc9UjjB8O0708X7Fdic_4O1LT4CmLHoiwhanLXiRhe82z-nAYtb9fTZKDBixD2HxiYHYVPH-xxO2ICq_bQ5AtMw6xWyX8VgTwssX2fjh05tb6dkcM6Lt9ekJpx6D34NfRPpF8Q4VylgqKNF3VmzxejAHNNKHNNyVrMPtwitkOGxD3d6sfFg-1A8=s960")
+        no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Base styles for the page */
+body {
+    background: #fbfbfd;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+
+.navbar .logo a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+}
+
+.navbar .nav-links {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+}
+
+.navbar .nav-links li {
+    margin: 0 10px;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1em;
+    padding: 10px;
+}
+
+.navbar .nav-links a:hover {
+    background-color: #444;
+    border-radius: 5px;
+}
+
+/* Hamburger Menu Styles for Mobile */
+.menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.menu-icon i {
+    font-size: 1.5em;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+    .navbar .nav-links {
+        display: none;  /* Hide the links on mobile */
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .navbar .nav-links li {
+        margin: 10px 0;
+    }
+
+    .navbar .menu-icon {
+        display: block; /* Show the hamburger icon on mobile */
+    }
+
+    .navbar.active .nav-links {
+        display: flex; /* Show links when active class is added */
+    }
+}
+
+/* Add some styles when the menu is active */
+.navbar.active .menu-icon i {
+    transform: rotate(90deg); /* Rotate hamburger to cross when active */
+}
+
+/* Additional Styles for Modal and Form */
+.personaldata {
+    background-color: #dfdad8;
+    padding: 10px;
+    margin: auto;
+    margin-top: 200px;
+    border-radius: 8px;
+    width: 380px;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.close {
+    cursor: pointer;
+    align-self: flex-end;  
+    font-size: 1.5em;  
+    margin-bottom: 10px; /* Spacing below the close button */
+}
+.close :hover{
+    background-color: #e41d1d;
+}
+
+
+.personalDataForm input {
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    min-width: 350px;
+}
+
+.personalDataForm button {
+   
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100px;
+}
+
+/* Hover effect for button */
+.personalDataForm button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    /* For tablets and smaller screens */
+    .personalDataForm input {
+        min-width: 100%;  /* Make input fields take full width on smaller screens */
+    }
+
+    .personalDataForm button {
+        width: 100%;  /* Make button take full width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    /* For mobile screens */
+    .personalDataForm {
+        padding: 10px;  /* Add some padding around the form */
+    }
+
+    .personalDataForm input,
+    .personalDataForm button {
+        font-size: 14px;  /* Adjust font size for smaller screens */
+        padding: 10px;  /* Adjust padding for smaller screens */
+    }
+}
+
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    max-height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Fixed Booking Form Styles */
+.fixed-booking-form {
+    position: relative;
+    top: 30px;
+    left: 80%;
+    height: auto;
+    transform: translateX(-50%);
+    background-color: transparent;
+    width: 100%;
+    max-width: 400px;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+.fixed-booking-form form select{
+   margin-top: 15px;
+}
+
+@media (max-width: 1024px) {
+    .fixed-booking-form {
+        top: 120px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 90%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .fixed-booking-form {
+        padding: 10px;
+        top: 150px;
+    }
+}
+
+/* Button Styles */
+.book-now-btn {
+    background-color: rgb(226, 73, 45);
+    color: white;
+    font-size: 14px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 15px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.book-now-btn:hover {
+    background-color: rgb(226, 73, 45);
+    border: 1px solid black;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.call-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: inline-block;
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.call-button i {
+    margin-right: 5px;
+}
+
+.call-button:hover {
+    background-color: rgb(61, 59, 59);
+    color: white;
+}
+
+/* Footer Styles */
+.new_footer_area {
+    background: blanchedalmond;
+}
+
+.new_footer_top {
+    padding: 120px 0px 270px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.new_footer_top .company_widget p {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 28px;
+    color: #6a7695;
+    margin-bottom: 20px;
+}
+
+.new_footer_top .footer_bg {
+    position: absolute;
+    bottom: 0;
+    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigB8iI5tb8WSVBuVUGc9UjjB8O0708X7Fdic_4O1LT4CmLHoiwhanLXiRhe82yw0R7LgACQ2IhZaTY0hhmGi0gYp_Ynb49CVzfmXtYHUVKgXXpWvJ_oYT8cB4vzsnJLe3iCwuzj-w6PeYq_JaHmy_CoGoa6nw0FBo-2xLdOPvsLTh_fmYH2xhkaZ-OGQ/s16000/footer_bg.png") no-repeat scroll center 0;
+    width: 100%;
+    height: 266px;
+}
+
+.new_footer_top .footer_bg .footer_bg_one {
+    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEia0PYPxwT5ifToyP3SNZeQWfJEWrUENYA5IXM6sN5vLwAKvaJS1pQVu8mOFFUa_ET4JuHNTFAxKURFerJYHDUWXLXl1vDofYXuij45JZelYOjEFoCOn7E6Vxu0fwV7ACPzArcno1rYuVxGB7JY6G7__e4_KZW4lTYIaHSLVaVLzklZBLZnQw047oq5-Q/s16000/volks.gif") no-repeat center center;
+    width: 330px;
+    height: 105px;
+    background-size: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    -webkit-animation: myfirst 22s linear infinite;
+    animation: myfirst 22s linear infinite;
+}
+
+.new_footer_top .footer_bg .footer_bg_two {
+    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyLGwEUVwPK6Vi8xXMymsc-ZXVwLWyXhogZxbcXQYSY55REw_0D4VTQnsVzCrL7nsyjd0P7RVOI5NKJbQ75koZIalD8mqbMquP20fL3DxsWngKkOLOzoOf9sMuxlbyfkIBTsDw5WFUj-YJiI50yzgVjF8cZPHhEjkOP_PRTQXDHEq8AyWpBiJdN9SfQA/s16000/cyclist.gif") no-repeat center center;
+    width: 88px;
+    height: 100px;
+    background-size: 100%;
+    bottom: 0;
+    left: 38%;
+    position: absolute;
+    -webkit-animation: myfirst 30s linear infinite;
+    animation: myfirst 30s linear infinite;
+}
+
+@keyframes myfirst {
+    0% {
+        left: 0;
+    }
+
+    50% {
+        left: 100%;
+    }
+
+    100% {
+        left: 0;
+    }
+}
