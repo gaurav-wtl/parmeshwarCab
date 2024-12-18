@@ -157,7 +157,7 @@ const SelectCar = () => {
       console.error('Error sending email:', error);
     }
   };
-
+  console.log(trip);
   return (
     <div className="container-fluid my-5 py-5 bg-white" id="book">
       <div className="container py-5">
@@ -200,7 +200,7 @@ const SelectCar = () => {
                       </ul>
                     </div>
                     <div className="car-option-price mb-4 sm:mb-0">
-                      <p className="text-lg font-bold text-gray-800">Rs {car.price} / PER KM</p>
+                      <p className="text-lg font-bold text-gray-800">Rs {car.price} {trip?.tripType === "Round" && "/Per KM"}</p>
                       <p className="text-gray-600">Toll Parking: {car.toll}</p>
                       <p className="text-gray-600">Driver Food: {car.food}</p>
                       {car.package != undefined && <p className="text-gray-600">Package: {car.package}</p>}
