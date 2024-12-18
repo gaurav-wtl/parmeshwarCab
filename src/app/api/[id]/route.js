@@ -46,7 +46,8 @@ export async function GET(req, { params }) {
         return new Response(
             JSON.stringify({
                 message: "Price found successfully",
-                price
+                price,
+                trip
             }),
             { status: 200 }
         );

@@ -6,7 +6,7 @@ function Header() {
     return (
         <div className="top-nav bg-gray-800 text-white py-3" id="home">
           <div className="container mx-auto px-4">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center flex-col sm:flex-row">
               <div className="flex flex-col sm:flex-row sm:items-center text-lg-left">
                 <p className="flex items-center mb-2 sm:mb-0">
                   <i className='bx bxs-envelope mr-2'></i>

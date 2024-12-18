@@ -1,15 +1,15 @@
-import Footer from '@/app/components/Footer'
-import Header from '@/app/components/Header'
-import Navbar from '@/app/components/Navbar'
-import SelectCar from '@/app/components/SelectCar'
 import React from 'react'
+import Header from '../components/Header';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import About from '../components/About';
 
-function page() {
+const page = () => {
   return (
     <div>
         <Header />
         <Navbar />
-        <SelectCar />
+        <About />
         <Footer />
 
         {/* WhatsApp and Call Buttons */}
@@ -28,4 +28,4 @@ function page() {
   )
 }
 
-export default page
+export default page;

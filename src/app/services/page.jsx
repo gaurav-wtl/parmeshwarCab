@@ -1,17 +1,19 @@
-import Footer from '@/app/components/Footer'
-import Header from '@/app/components/Header'
-import Navbar from '@/app/components/Navbar'
-import SelectCar from '@/app/components/SelectCar'
 import React from 'react'
+import Header from '../components/Header'
+import Navbar from '../components/Navbar'
+import Services from '../components/Services'
+import Footer from '../components/Footer'
+import CabOffers from '../components/CabOffer'
 
-function page() {
+const page = () => {
   return (
     <div>
         <Header />
         <Navbar />
-        <SelectCar />
+        <Services />
+        <CabOffers />
         <Footer />
-
+        
         {/* WhatsApp and Call Buttons */}
       <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-between p-4">
         {/* Call Button (Left) */}

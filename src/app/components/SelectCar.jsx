@@ -4,6 +4,7 @@ import emailjs from "emailjs-com"
 import { useRouter } from 'next/navigation';
 
 const SelectCar = () => {
+  const [trip, setTrip] = useState({});
   const [tripId, setTripId] = useState(null);
   const [carOptions, setCarOptions] = useState([]);
   const [selectCar, setSelectCar] = useState(null);
@@ -24,7 +25,8 @@ const SelectCar = () => {
     try {
       const res = await fetch(`/api/${tripId}`);
       const data = await res.json();
-      const type = localStorage.getItem("type");
+      const type = data?.trip?.tripType;
+      setTrip(data?.trip);
 
       const updatedCarOptions = [
         {
@@ -59,16 +61,36 @@ const SelectCar = () => {
 
       if (type === "Round") {
         updatedCarOptions[0].price = 12;
+        updatedCarOptions[0].toll = "Extra"
+        updatedCarOptions[0].food = "300 rs."
+        updatedCarOptions[0].package = "300km/package"
         updatedCarOptions[1].price = 15;
+        updatedCarOptions[1].toll = "Extra"
+        updatedCarOptions[1].food = "300 rs."
+        updatedCarOptions[1].package = "300km/package"
         updatedCarOptions[2].price = 18;
+        updatedCarOptions[2].toll = "Extra"
+        updatedCarOptions[2].food = "300 rs."
+        updatedCarOptions[2].package = "300km/package"
         updatedCarOptions[3].price = 20;
+        updatedCarOptions[3].toll = "Extra"
+        updatedCarOptions[3].food = "300 rs."
+        updatedCarOptions[3].package = "300km/package"
       } else {
         updatedCarOptions[0].price = data.price.pricing.HATCHBACK;
+        updatedCarOptions[0].toll = "Included"
+        updatedCarOptions[0].food = "Included"
         updatedCarOptions[1].price = data.price.pricing.SEDAN;
+        updatedCarOptions[1].toll = "Included"
+        updatedCarOptions[1].food = "Included"
         updatedCarOptions[2].price = data.price.pricing.MUV;
+        updatedCarOptions[2].toll = "Included"
+        updatedCarOptions[2].food = "Included"
         updatedCarOptions[3].price = data.price.pricing.SUV;
+        updatedCarOptions[3].toll = "Included"
+        updatedCarOptions[3].food = "Included"
       }
-
+      console.log(updatedCarOptions, data);
       setCarOptions(updatedCarOptions);
     } catch (error) {
       console.error("Error fetching car options:", error);
@@ -86,8 +108,8 @@ const SelectCar = () => {
         body: JSON.stringify({ vehicle: car.name, price: car.price })
       });
       const data = await res.json();
-      setSelectCar(data);
-      console.log("Car selected:", data);
+      setSelectCar(car);
+      console.log("Car selected:", car);
 
       // Open modal after car selection
       setIsModalOpen(true);
@@ -107,20 +129,23 @@ const SelectCar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    (function () {
+      emailjs.init("9lQwfFeT4fUUR6D9o"); // Replace with your EmailJS public key
+    })();
+
     // Send user details via EmailJS
     const templateParams = {
       name: userDetails.name,
       email: userDetails.email,
       mobileNumber: userDetails.mobileNumber
     };
-
+    console.log(e.target);
     try {
       // Send the email using EmailJS
-      const response = await emailjs.send(
+      const response = await emailjs.sendForm(
         'service_vrdsczw', // Service ID from EmailJS
         'template_74dvtz6', // Template ID from EmailJS
-        templateParams,
-        '9lQwfFeT4fUUR6D9o' // User ID from EmailJS
+        e.target,
       );
       console.log('Email sent successfully:', response);
 
@@ -176,7 +201,9 @@ const SelectCar = () => {
                     </div>
                     <div className="car-option-price mb-4 sm:mb-0">
                       <p className="text-lg font-bold text-gray-800">Rs {car.price} / PER KM</p>
-                      <p className="text-gray-600">Toll Parking/Driver Food: Extra</p>
+                      <p className="text-gray-600">Toll Parking: {car.toll}</p>
+                      <p className="text-gray-600">Driver Food: {car.food}</p>
+                      {car.package != undefined && <p className="text-gray-600">Package: {car.package}</p>}
                     </div>
                     <div className="w-full sm:w-auto">
                       <button
@@ -236,6 +263,16 @@ const SelectCar = () => {
                   required
                 />
               </div>
+
+              <input type="hidden" value={trip.route} id="route" name="route" />
+              <input type="hidden" value={selectCar.name} id="vehicle" name="vehicle" />
+              <input type="hidden" value={selectCar.price} id="price" name="price" />
+              <input type="hidden" value={trip.passengers} id="passengers" name="passengers" />
+              <input type="hidden" value={trip.tripType} id="tripType3" name="tripType3" />
+              <input type="hidden" value={trip.date} id="date" name="date" />
+              <input type="hidden" value={trip.time} id="time" name="time" />
+              <input type="hidden" value={trip.returnTime} id="rdate" name="rdate" />
+              <input type="hidden" value={trip.returnDate} id="rtime" name="rtime" />
               <div className="flex justify-center">
                 <button type="submit" className="bg-blue-500 text-white px-6 py-2 rounded-lg">Submit</button>
               </div>
