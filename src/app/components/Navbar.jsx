@@ -8,7 +8,7 @@ const Navbar = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <nav className="bg-white sticky top-0 shadow-md">
+    <nav className="bg-white sticky z-50 top-0 shadow-md">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center space-x-2">
@@ -35,11 +35,11 @@ const Navbar = () => {
           <Link href="/services">
             <span className="text-gray-600 hover:text-blue-600 cursor-pointer">Services</span>
           </Link>
-          <Link href="#contactModal">
+          {/* <Link href="#contactModal">
             <span className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 cursor-pointer">
               Contact Us
             </span>
-          </Link>
+          </Link> */}
         </div>
 
         {/* Hamburger menu for mobile */}
